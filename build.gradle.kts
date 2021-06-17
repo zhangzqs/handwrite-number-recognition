@@ -1,5 +1,3 @@
-import sun.jvmstat.monitor.MonitoredVmUtil
-
 plugins {
     java
 }
