@@ -2,16 +2,14 @@ package cn.zzq.handwrite;
 
 import cn.zzq.handwrite.matrix.Function;
 import cn.zzq.handwrite.matrix.Matrix;
+import cn.zzq.handwrite.matrix.exception.MatrixShapeException;
 
 public class BPNetwork {
-    private int inputNodeCount;     //输入层节点数目
-    private int hiddenNodeCount;    //隐藏层节点数目
-    private int outputNodeCount;    //输出层节点数目
     private double learningRate;    //学习率
 
     private Matrix inputHiddenW;    //输入层到隐藏层的权重矩阵
     private Matrix hiddenOutputW;   //隐藏层到输出层的权重矩阵
-    private Function activation;    //激活函数
+    private final Function activation;    //激活函数
 
     /**
      * 初始化一个BP神经网络
@@ -20,13 +18,10 @@ public class BPNetwork {
      * @param outputNodeCount 输出层网络节点
      * @param learningRate 学习率
      */
-    public BPNetwork(int inputNodeCount,
-                     int hiddenNodeCount,
-                     int outputNodeCount,
+    public BPNetwork(int inputNodeCount,     //输入层节点数目
+                     int hiddenNodeCount,   //隐藏层节点数目
+                     int outputNodeCount,//输出层节点数目
                      double learningRate) {
-        this.inputNodeCount = inputNodeCount;
-        this.hiddenNodeCount = hiddenNodeCount;
-        this.outputNodeCount = outputNodeCount;
         this.learningRate = learningRate;   //学习率
 
         //输入层为一个长度为784的行向量input
@@ -53,7 +48,6 @@ public class BPNetwork {
 
         //激活函数为signmoid函数
         this.activation = x -> 1f / (1 + Math.exp(-x));
-
     }
 
     /**
@@ -77,6 +71,9 @@ public class BPNetwork {
      * @param inputHiddenW 输入层到隐藏层的权重矩阵
      */
     public void setInputHiddenMatrix(Matrix inputHiddenW){
+        if(this.inputHiddenW.diffShape(inputHiddenW)){  //必须形状相符的矩阵
+           throw new MatrixShapeException(this.inputHiddenW,inputHiddenW);
+        }
         this.inputHiddenW = inputHiddenW;
     }
     /**
@@ -84,6 +81,9 @@ public class BPNetwork {
      * @param hiddenOutputW 隐藏层到输出层的权重矩阵
      */
     public void setHiddenOutputMatrix(Matrix hiddenOutputW){
+        if(this.hiddenOutputW.diffShape(hiddenOutputW)){  //必须形状相符的矩阵
+            throw new MatrixShapeException(this.hiddenOutputW,hiddenOutputW);
+        }
         this.hiddenOutputW = hiddenOutputW;
     }
 
@@ -115,6 +115,12 @@ public class BPNetwork {
         Matrix output = hidden.dot(hiddenOutputW);  //输出层节点输入
         output.mapWith(activation); //激活函数，得到最终输出层的输出向量
 
+        //input为(1,784)矩阵
+        //inputHiddenW为(784,100)矩阵
+        //hidden = input*inputHidden为(1,100)矩阵
+        //hiddenOutputW为(100,10)矩阵
+        //output为(1,10)矩阵
+
         //误差反向推算 error = input - output;
         Matrix outputErrors = input.sub(output);
 
@@ -125,6 +131,6 @@ public class BPNetwork {
                 .mul(learningRate);
         this.hiddenOutputW.addWith(deltaHiddenOutput);
 
-        //Matrix hiddenErrors =
+        Matrix hiddenErrors = outputErrors.dot(hiddenOutputW);
     }
 }
