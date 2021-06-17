@@ -146,12 +146,20 @@ public class Main extends PApplet {
                 image.clear();
                 break;
             case 'c': {
-                long cm = System.currentTimeMillis();
+                long ns = System.nanoTime();
+
                 Matrix m1 = image.copy();
                 m1.reshape(1, 784);
                 m1.mulWith(1 / 255f);
-                System.out.println(getResult(bpNetwork.query(m1)));
-                System.out.println(System.currentTimeMillis() - cm);
+                Matrix output = bpNetwork.query(m1);
+                long deltaNs = System.nanoTime() - ns;
+
+                System.out.println("识别结果: ");
+                for(int i:getResult(output)){
+                    System.out.printf("%d: 置信度: %.2f\n",i,output.get(0,i));
+                }
+
+                System.out.println("推理用时"+deltaNs / 1000000f);
                 break;
             }
             case 'r':
