@@ -1,11 +1,10 @@
-package cn.zzq.handwriter.mnistparser;
+package cn.zzq.handwrite.mnistparser;
 
-import cn.zzq.handwriter.matrix.Matrix;
+import cn.zzq.handwrite.matrix.Matrix;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.io.DataInputStream;
 
 public class MnistImage {
     final int size;   //图片数目

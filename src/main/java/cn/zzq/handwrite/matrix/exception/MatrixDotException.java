@@ -1,6 +1,6 @@
-package cn.zzq.handwriter.matrix.exception;
+package cn.zzq.handwrite.matrix.exception;
 
-import cn.zzq.handwriter.matrix.Matrix;
+import cn.zzq.handwrite.matrix.Matrix;
 
 public class MatrixDotException extends RuntimeException{
     public MatrixDotException(Matrix m1, Matrix m2){

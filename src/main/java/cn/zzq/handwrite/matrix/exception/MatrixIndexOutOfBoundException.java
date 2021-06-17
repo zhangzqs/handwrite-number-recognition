@@ -1,4 +1,4 @@
-package cn.zzq.handwriter.matrix.exception;
+package cn.zzq.handwrite.matrix.exception;
 
 public class MatrixIndexOutOfBoundException extends IndexOutOfBoundsException{
     public MatrixIndexOutOfBoundException() {

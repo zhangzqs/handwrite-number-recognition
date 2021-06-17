@@ -1,7 +1,7 @@
-package cn.zzq.handwriter;
+package cn.zzq.handwrite;
 
-import cn.zzq.handwriter.matrix.Function;
-import cn.zzq.handwriter.matrix.Matrix;
+import cn.zzq.handwrite.matrix.Function;
+import cn.zzq.handwrite.matrix.Matrix;
 
 public class BPNetwork {
     private int inputNodeCount;     //输入层节点数目

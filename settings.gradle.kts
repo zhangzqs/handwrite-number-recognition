@@ -1,2 +1,2 @@
-rootProject.name = "HandwriteNumberRec"
+rootProject.name = "handwrite-number-recognition"
 

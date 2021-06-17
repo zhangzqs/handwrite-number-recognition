@@ -1,9 +1,9 @@
-package cn.zzq.handwriter.matrix;
+package cn.zzq.handwrite.matrix;
 
-import cn.zzq.handwriter.matrix.exception.MatrixDotException;
-import cn.zzq.handwriter.matrix.exception.MatrixIndexOutOfBoundException;
-import cn.zzq.handwriter.matrix.exception.MatrixReshapeException;
-import cn.zzq.handwriter.matrix.exception.MatrixShapeException;
+import cn.zzq.handwrite.matrix.exception.MatrixDotException;
+import cn.zzq.handwrite.matrix.exception.MatrixIndexOutOfBoundException;
+import cn.zzq.handwrite.matrix.exception.MatrixReshapeException;
+import cn.zzq.handwrite.matrix.exception.MatrixShapeException;
 
 import java.util.Arrays;
 import java.util.Random;

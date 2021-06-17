@@ -1,8 +1,7 @@
-package cn.zzq.handwriter.matrix;
+package cn.zzq.handwrite.matrix;
 
-import cn.zzq.handwriter.matrix.exception.MatrixDotException;
+import cn.zzq.handwrite.matrix.exception.MatrixDotException;
 
-import java.util.function.IntConsumer;
 import java.util.stream.IntStream;
 
 /**

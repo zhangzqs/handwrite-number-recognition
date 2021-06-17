@@ -1,14 +1,15 @@
-package cn.zzq.handwriter;
+package cn.zzq.handwrite;
 
-import cn.zzq.handwriter.matrix.Matrix;
-import cn.zzq.handwriter.matrix.MatrixLoader;
-import cn.zzq.handwriter.mnistparser.MnistImage;
+import cn.zzq.handwrite.matrix.Matrix;
+import cn.zzq.handwrite.matrix.MatrixLoader;
+import cn.zzq.handwrite.mnistparser.MnistImage;
 import processing.core.PApplet;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main extends PApplet {
@@ -73,20 +74,21 @@ public class Main extends PApplet {
         int mx = mouseX / sx;                       //判定鼠标当前在哪个网格
         int my = mouseY / sy;
 
-        //网格越界判断
-        if (    mx < 0 ||
-                my < 0 ||
-                mx >= image.getColumnSize() ||
-                my >= image.getRowSize()||
-                mx - 1< 0 ||
-                my - 1< 0 ||
-                mx + 1 >= image.getColumnSize() ||
-                my + 1>= image.getRowSize()
-        ) {
-            return;
-        }
+
 
         if (mousePressed) { //当鼠标按下时候
+            //网格越界判断
+            if (    mx < 0 ||
+                    my < 0 ||
+                    mx >= image.getColumnSize() ||
+                    my >= image.getRowSize()||
+                    mx - 1< 0 ||
+                    my - 1< 0 ||
+                    mx + 1 >= image.getColumnSize() ||
+                    my + 1>= image.getRowSize()
+            ) {
+                return;
+            }
             int cx = (mx * sx + (mx+1) * sx) / 2;   //获取该网格的中心点的坐标
             int cy = (my * sy + (my+1) * sy) / 2;
             int dx = mouseX - cx;   //获取鼠标偏离该网格中心的x,y偏差
@@ -125,7 +127,7 @@ public class Main extends PApplet {
      */
     List<Integer> getResult(Matrix m) {
         //生成索引(0,9)
-        List<Integer> index = IntStream.range(0, m.getColumnSize()).boxed().toList();
+        List<Integer> index = IntStream.range(0, m.getColumnSize()).boxed().collect(Collectors.toList());
 
         //获得置信度向量
         double[] confidences = index.stream().mapToDouble(i -> m.get(0, i)).toArray();

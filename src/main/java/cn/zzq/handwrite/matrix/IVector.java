@@ -1,4 +1,4 @@
-package cn.zzq.handwriter.matrix;
+package cn.zzq.handwrite.matrix;
 
 public interface IVector {
     double get(int index);

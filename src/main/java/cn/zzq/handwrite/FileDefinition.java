@@ -1,4 +1,4 @@
-package cn.zzq.handwriter;
+package cn.zzq.handwrite;
 
 import java.io.File;
 

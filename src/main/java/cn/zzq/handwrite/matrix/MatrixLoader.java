@@ -1,9 +1,6 @@
-package cn.zzq.handwriter.matrix;
-
-import cn.zzq.handwriter.matrix.Matrix;
+package cn.zzq.handwrite.matrix;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;

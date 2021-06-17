@@ -1,4 +1,4 @@
-package cn.zzq.handwriter.mnistparser;
+package cn.zzq.handwrite.mnistparser;
 
 import java.io.IOException;
 import java.io.InputStream;
